@@ -24,7 +24,7 @@ The datasets used to compare the above models are listed below:
 7. HSLog (http://archive.ics.uci.edu/ml/datasets/statlog+(heart))
 8. Ionosphere (https://archive.ics.uci.edu/ml/datasets/ionosphere)
 9. Nursery (https://archive.ics.uci.edu/ml/datasets/nursery)
-10. Phenome (uploaded)
+10. Phoneme (uploaded)
 
 Each model is applied on each dataset with a 10x10 Fold Cross Validation and a comprehensive table for each performance measure
 (F-measure, Accuracy and AUC) is written to 'Results.csv'. Statistical analysis via t-test and WIN-TIE-LOSS is also performed and 
