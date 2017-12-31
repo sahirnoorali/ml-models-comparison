@@ -4,7 +4,7 @@ Created on Mon Mar 20 17:54:05 2017
 
 Author: Sahir
 Code:   Apply Models on 10 Data-Sets. Calculate accuracy, fmeasure and auc 
-        for each. WIN-TIE-LOSE and T-test
+        for each. Statistical analysis using WIN-TIE-LOSE and T-test
 """
 #-------------------------------------------------------------------------
 # All the Libraries 
@@ -41,21 +41,21 @@ AUC = [[0 for y in range(0,9)] for x in range(0,10)]
 #------------------------------------------------------------------------
 def Stacking(model, X, Y, folds, modelName):     
 
-	#Predict clusters with KMeans
+    #Predict clusters with KMeans
     pred = model.fit_predict(X)
 	
-	#Append to the dataset
+    #Append to the dataset
     X = np.c_[X, pred]
 	
-	#Init KNN
+    #Init KNN
     knn = KNeighborsClassifier(n_neighbors=3)
 	
-	#Init arrays for performance measures
+    #Init arrays for performance measures
     acc_array = [0] * 10
     f1_array =  [0] * 10
     auc_array = [0] * 10
 
-	#10 times K Fold
+    #10 times K Fold
     for i in range (1,11):
         kf = KFold(X.shape[0],n_folds=folds, random_state=i)
         acc = 0
@@ -81,7 +81,7 @@ def Stacking(model, X, Y, folds, modelName):
             #Get F1
             f1 = f1 + f1_score(Y_test,prediction)
         
-		#Store the performance measures (10 values for each)
+	#Store the performance measures (10 values for each)
         acc_array[i-1] = acc/folds
         f1_array[i-1]  = f1/folds
         auc_array[i-1] = auc_/folds
@@ -123,24 +123,24 @@ def ApplyModel(model, kf, X, Y, folds, modelName):
 #------------------------------------------------------------------------- 
 def Compute(model, X, Y, shape, folds, modelName, row, col):
     #Init arrays for performance measures
-	acc_array = [0] * 10
+    acc_array = [0] * 10
     f1_array  = [0] * 10 
     auc_array = [0] * 10
 
-	#Apply Stacking if passed
+    #Apply Stacking if passed
     if modelName == "Stacking":
         acc_array , f1_array, auc_array = Stacking(model, X, Y, folds, modelName)
     
     else:
-		#10 times K fold
+	#10 times K fold
         for i in range (1,11):  
         #Defining a fold of 10
             folds = 10
             kf = KFold(shape,n_folds=folds, random_state=i)
-			#Apply the passed model
+	    #Apply the passed model
             acc_array[i-1] , f1_array[i-1], auc_array[i-1] =  ApplyModel(model, kf, X, Y, folds, modelName)
 
-	#Store all the pefromance measures in the global storage
+    #Store all the pefromance measures in the global storage
     Accuracy[row][col]     = round(np.array(acc_array).mean(), 4)        
     Fmeasure[row][col]     = round(np.array(f1_array).mean(), 4)
     AUC[row][col]          = round(np.array(auc_array).mean(), 4)      
