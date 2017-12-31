@@ -1,6 +1,8 @@
 # Analysis and Comparison of Machine Learning Models
 
-This project compares and evaluates various Machine Learning Algorithms using F-measure, Accuracy and AUC (Area Under Curve).
+This project compares and evaluates the performance of various Machine Learning Models using F-measure, Accuracy and AUC (Area Under Curve) with respect to disparate datasets.
+
+## Machine Learning Models
 The Machine Learning Models applied are as follows:
 
 1. Bagging with Decision Tree
@@ -13,6 +15,7 @@ The Machine Learning Models applied are as follows:
 8. Decision Tree
 9. Kmeans (5 clusters) with 3-NN classifier -> Stacking
 
+## Datasets
 The datasets used to compare the above models are listed below:
 
 1. Abalone (https://archive.ics.uci.edu/ml/datasets/abalone)
@@ -26,9 +29,11 @@ The datasets used to compare the above models are listed below:
 9. Nursery (https://archive.ics.uci.edu/ml/datasets/nursery)
 10. Phoneme (uploaded)
 
+## Process
 Each model is applied on each dataset with a 10x10 Fold Cross Validation and a comprehensive table for each performance measure
 (F-measure, Accuracy and AUC) is written to 'Results.csv'. Statistical analysis via t-test and WIN-TIE-LOSS is also performed and 
 a table for each performance measure is again written to the same CSV file. These 6 tables are formatted properly and explained in
 the document 'Report.docx' uploaded.
 
-Note: Each table compares a specific performance measure of the given models with respect to each dataset.
+## Note 
+Each table compares a specific performance measure of the given models with respect to each dataset.
